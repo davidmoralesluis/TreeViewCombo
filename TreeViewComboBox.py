@@ -81,8 +81,9 @@ class Aplicacion (Gtk.Window):
     def on_cmbDni_changed(self, combo):
         fila = combo.get_active_iter()
         if fila is not None:
-            modelo = self.combo.get_model()
+            modelo = combo.get_model()
             self.dniFiltro = modelo[fila][0]
+            self.modeloFiltrado.refilter()
 
 
 
@@ -90,7 +91,7 @@ class Aplicacion (Gtk.Window):
         if (self.dniFiltro is None or self.dniFiltro == "None"):
             return True
         else:
-            return modelo[iter][0] == self.dniFiltro
+            return modelo[fila][0] == self.dniFiltro
 
 if __name__ == "__main__":
     Aplicacion()
